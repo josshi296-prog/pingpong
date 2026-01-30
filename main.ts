@@ -1,5 +1,12 @@
-tiles.setCurrentTilemap(tilemap`level1`)
-mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.One), sprites.create(img`
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
+    if (sprite == it) {
+        it = otherSprite
+    } else if (otherSprite == it) {
+        it = sprite
+    }
+})
+let it: Sprite = null
+let player1 = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
     . . . f f f 2 2 2 2 f f f . . . 
@@ -16,8 +23,8 @@ mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.One), sprites.create(img`
     . . 4 4 f 4 4 5 5 4 4 f 4 4 . . 
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
-    `, SpriteKind.Player))
-mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), sprites.create(img`
+    `, SpriteKind.Player)
+let player2 = sprites.create(img`
     . . . . f f f f f . . . . . . . 
     . . . f e e e e e f . . . . . . 
     . . f d d d d e e e f . . . . . 
@@ -34,40 +41,10 @@ mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), sprites.create(img`
     . . . f d b f d b f f e f . . . 
     . . . f d d c d d b b d f . . . 
     . . . . f f f f f f f f f . . . 
-    `, SpriteKind.Player))
-mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Three), sprites.create(img`
-    . . . . f f f f . . . . . 
-    . . f f f f f f f f . . . 
-    . f f f f f f c f f f . . 
-    f f f f f f c c f f f c . 
-    f f f c f f f f f f f c . 
-    c c c f f f e e f f c c . 
-    f f f f f e e f f c c f . 
-    f f f b f e e f b f f f . 
-    . f 4 1 f 4 4 f 1 4 f . . 
-    . f e 4 4 4 4 4 4 e f . . 
-    . f f f e e e e f f f . . 
-    f e f b 7 7 7 7 b f e f . 
-    e 4 f 7 7 7 7 7 7 f 4 e . 
-    e e f 6 6 6 6 6 6 f e e . 
-    . . . f f f f f f . . . . 
-    . . . f f . . f f . . . . 
-    `, SpriteKind.Player))
-mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Four), sprites.create(img`
-    . . . . f f f f . . . . 
-    . . f f e e e e f f . . 
-    . f f e e e e e e f f . 
-    f f f f 4 e e e f f f f 
-    f f f 4 4 4 e e f f f f 
-    f f f 4 4 4 4 e e f f f 
-    f 4 e 4 4 4 4 4 4 e 4 f 
-    f 4 4 f f 4 4 f f 4 4 f 
-    f e 4 d d d d d d 4 e f 
-    . f e d d b b d d e f . 
-    . f f e 4 4 4 4 e f f . 
-    e 4 f b 1 1 1 1 b f 4 e 
-    4 d f 1 1 1 1 1 1 f d 4 
-    4 4 f 6 6 6 6 6 6 f 4 4 
-    . . . f f f f f f . . . 
-    . . . f f . . f f . . . 
-    `, SpriteKind.Player))
+    `, SpriteKind.Player)
+controller.moveSprite(player1, 100, 100)
+controller.player2.moveSprite(player2, 100, 100)
+player1.setPosition(30, 60)
+player2.setPosition(130, 60)
+it = player1
+player1.say("IT")
